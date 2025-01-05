@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LocalAndroidApplication</string>
+    <string name="no_data_label">No Data Found</string>
+</resources>
