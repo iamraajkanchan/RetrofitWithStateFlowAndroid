@@ -1,11 +1,11 @@
-package com.chinky.localandroidapplication.viewModel
+package com.chinky.localandroidapplication.activity.family.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.chinky.localandroidapplication.repository.ApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class MainActivityViewModel(private val apiService: ApiService) : ViewModel() {
+class FamilyActivityViewModel(private val apiService: ApiService) : ViewModel() {
 
     private val mutableFamilyListFlow: MutableStateFlow<SealedGetFamily> =
         MutableStateFlow(SealedGetFamily.Loading)

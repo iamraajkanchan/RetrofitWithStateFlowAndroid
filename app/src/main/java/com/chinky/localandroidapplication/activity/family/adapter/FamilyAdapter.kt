@@ -1,4 +1,4 @@
-package com.chinky.localandroidapplication.adpater
+package com.chinky.localandroidapplication.activity.family.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.chinky.localandroidapplication.R
-import com.chinky.localandroidapplication.model.FamilyMember
+import com.chinky.localandroidapplication.activity.family.model.FamilyMember
 
 class FamilyAdapter(private val familyList: List<FamilyMember>, private val context: Context) :
     RecyclerView.Adapter<FamilyAdapter.FamilyViewHolder>() {

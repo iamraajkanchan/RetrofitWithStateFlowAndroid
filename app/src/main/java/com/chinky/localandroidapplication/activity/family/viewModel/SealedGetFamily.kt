@@ -1,6 +1,6 @@
-package com.chinky.localandroidapplication.viewModel
+package com.chinky.localandroidapplication.activity.family.viewModel
 
-import com.chinky.localandroidapplication.model.FamilyMember
+import com.chinky.localandroidapplication.activity.family.model.FamilyMember
 
 sealed class SealedGetFamily {
     data class Success(val familyList: List<FamilyMember>) : SealedGetFamily()

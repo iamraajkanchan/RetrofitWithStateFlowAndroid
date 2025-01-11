@@ -1,4 +1,4 @@
-package com.chinky.localandroidapplication.model
+package com.chinky.localandroidapplication.activity.student.model
 
 data class Pageable(
     val pageNumber: Int,

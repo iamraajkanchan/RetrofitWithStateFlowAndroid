@@ -1,4 +1,4 @@
-package com.chinky.localandroidapplication.activity
+package com.chinky.localandroidapplication.activity.family
 
 import android.os.Bundle
 import android.view.View
@@ -13,12 +13,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.chinky.localandroidapplication.R
-import com.chinky.localandroidapplication.adpater.FamilyAdapter
+import com.chinky.localandroidapplication.activity.family.adapter.FamilyAdapter
 import com.chinky.localandroidapplication.retrofit.RetrofitHelper
 import com.chinky.localandroidapplication.utility.Utility
-import com.chinky.localandroidapplication.viewModel.MainActivityViewModel
-import com.chinky.localandroidapplication.viewModel.SealedGetFamily
-import com.chinky.localandroidapplication.viewModel.ViewModelFactory
+import com.chinky.localandroidapplication.activity.family.viewModel.FamilyActivityViewModel
+import com.chinky.localandroidapplication.activity.family.viewModel.SealedGetFamily
+import com.chinky.localandroidapplication.viewModelFactory.ViewModelFactory
 import kotlinx.coroutines.launch
 
 class FamilyActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class FamilyActivity : AppCompatActivity() {
     private lateinit var tvNoDataFoundLabel: TextView
     private lateinit var progressBarMain: ProgressBar
     private lateinit var rvFamilyList: RecyclerView
-    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModel: FamilyActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class FamilyActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(
             this,
             ViewModelFactory(RetrofitHelper.getApiService())
-        )[MainActivityViewModel::class.java]
+        )[FamilyActivityViewModel::class.java]
         viewModel.let { vm ->
             lifecycleScope.launch {
                 vm.getFamilyList()

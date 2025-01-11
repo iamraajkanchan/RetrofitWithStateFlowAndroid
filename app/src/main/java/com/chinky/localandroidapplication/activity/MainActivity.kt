@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.chinky.localandroidapplication.R
+import com.chinky.localandroidapplication.activity.family.FamilyActivity
+import com.chinky.localandroidapplication.activity.student.StudentActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

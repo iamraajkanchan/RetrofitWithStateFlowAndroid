@@ -1,4 +1,4 @@
-package com.chinky.localandroidapplication.activity
+package com.chinky.localandroidapplication.activity.student
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
