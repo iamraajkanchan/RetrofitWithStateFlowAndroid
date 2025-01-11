@@ -54,4 +54,6 @@ dependencies {
     // Dependency used for ViewModel
     implementation libs.androidx.lifecycle.viewmodel.ktx
 
+    implementation libs.androidx.paging.runtime
+
 }
