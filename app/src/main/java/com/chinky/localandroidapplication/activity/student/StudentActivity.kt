@@ -1,12 +1,16 @@
 package com.chinky.localandroidapplication.activity.student
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chinky.localandroidapplication.R
 import com.chinky.localandroidapplication.activity.student.adapter.LoadingStateAdapter
@@ -17,6 +21,7 @@ import kotlinx.coroutines.launch
 class StudentActivity : AppCompatActivity() {
 
     private val rvStudentList: RecyclerView by lazy { findViewById(R.id.rvStudentList) }
+    private val progressBarStudent: ProgressBar by lazy { findViewById(R.id.progressBarStudent) }
     private val viewModel: StudentViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +37,20 @@ class StudentActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        val adapter = StudentAdapter().apply {
-            withLoadStateFooter(footer = LoadingStateAdapter { retry() })
-        }
-        rvStudentList.adapter = adapter
+        val studentAdapter = StudentAdapter()
+        val loadingStateAdapter = LoadingStateAdapter { studentAdapter.retry() }
+        val concatAdapter = ConcatAdapter(studentAdapter, loadingStateAdapter)
+        rvStudentList.adapter = concatAdapter
         lifecycleScope.launch {
             viewModel.students.collect {
-                adapter.submitData(lifecycle, it)
+                studentAdapter.submitData(lifecycle, it)
+            }
+        }
+        studentAdapter.addLoadStateListener {
+            loadingStateAdapter.loadState = it.append
+            progressBarStudent.visibility = when (it.append) {
+                is LoadState.Loading -> View.VISIBLE
+                else -> View.GONE
             }
         }
     }
