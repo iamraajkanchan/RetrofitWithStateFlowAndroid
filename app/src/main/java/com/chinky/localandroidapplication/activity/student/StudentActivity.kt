@@ -1,7 +1,10 @@
 package com.chinky.localandroidapplication.activity.student
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -37,7 +40,11 @@ class StudentActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window?.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        }
         val studentAdapter = StudentAdapter()
         val loadingStateAdapter = LoadingStateAdapter { studentAdapter.retry() }
         val concatAdapter = ConcatAdapter(studentAdapter, loadingStateAdapter)

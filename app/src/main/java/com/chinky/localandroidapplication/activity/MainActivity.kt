@@ -1,7 +1,10 @@
 package com.chinky.localandroidapplication.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +28,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window?.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        }
         val btnFamily = findViewById<Button>(R.id.btnFamily)
         val btnStudent = findViewById<Button>(R.id.btnStudent)
         btnStudent.setOnClickListener { v ->

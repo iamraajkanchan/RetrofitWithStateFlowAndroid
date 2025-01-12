@@ -1,7 +1,10 @@
 package com.chinky.localandroidapplication.activity.family
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -41,6 +44,11 @@ class FamilyActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window?.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        }
         tvNoDataFoundLabel = findViewById(R.id.tvNoDataFoundLabel)
         progressBarMain = findViewById(R.id.progressBarMain)
         rvFamilyList = findViewById(R.id.rvFamilyList)
