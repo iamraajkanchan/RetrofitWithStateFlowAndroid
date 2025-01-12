@@ -37,6 +37,7 @@ class StudentActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+
         val studentAdapter = StudentAdapter()
         val loadingStateAdapter = LoadingStateAdapter { studentAdapter.retry() }
         val concatAdapter = ConcatAdapter(studentAdapter, loadingStateAdapter)
